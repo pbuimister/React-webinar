@@ -1,5 +1,5 @@
 # React-webinar
-1. Kanban App (app/javascript/apps/KanbanBoardApp)
+## Kanban App (app/javascript/apps/KanbanBoardApp)
 Kanban-дошка побудована в ієрархічній структурі:
 components:
 
@@ -16,21 +16,21 @@ context:
 BoardContext.jsx : Постачає глобальний стан для всіх елементів Kanban-дошки. Включає інформацію про колонки, картки, їхній порядок.
 ColumnContext.jsx : функціонал синзронізації і підвантаження данних в колонку ці дані потім зберігаються в boardContext.
 index.jsx : Точка входу для Kanban-дошки, яка імпортується в загальний застосунок.
-2. Елементи інтерфейсу (app/javascript/elements)
+## Елементи інтерфейсу (app/javascript/elements)
 DatePickerElement:
 CSS-модуль DatePickerElement.module.scss і відповідний компонент index.jsx створюють компонент для вибору дат (можливо, для дедлайнів задач).
 Loader.jsx : індикатор завантаження.
 Notice.jsx : випливаючі повідомлення.
 Multiselect.jsx : Компонент для вибору кількох опцій з випадаючого списку (можливо, для тегів або категорій задач).
-3. Допоміжні утиліти
+## Допоміжні утиліти
 app/javascript/helpers/index.js : Містить корисні функції, які використовуються в додатку не обовязково react.
 app/javascript/hooks/useWindowResize.jsx : Хук React, який слідкує за зміною розмірів вікна браузера та дозволяє адаптувати компоненти (наприклад, адаптація відображення Kanban-дошки на менших екранах).
-4. Послуги та API (app/javascript/services)
+## Послуги та API (app/javascript/services)
 AppService/Resource.js і Resources.js: Реалізують шар роботи з ресурсами. Тут знаходиться код для роботи з сервером (REST API) — наприклад, отримання, створення чи оновлення задач/колонок Kanban-дошки. Прописує routes як при resources.
-5. Стилі (app/javascript/stylesheets)
+## Стилі (app/javascript/stylesheets)
 _board.scss : Конкретні стилі для відображення Kanban-дошки.
-6. Налаштування Webpack (config/webpack/environment.js):
+## Налаштування Webpack (config/webpack/environment.js):
 Має корисні aliases для швидшого імпорту, наприклад:
 @apps, @components, @elements, @helpers, @services — дають змогу уникати довгих абсолютних або відносних шляхів і структурувати код.
-7. Побудова:
+## Побудова:
 Конфігурація збірки (webpacker.yml, package.json):
