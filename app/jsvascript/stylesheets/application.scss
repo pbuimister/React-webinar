@@ -1,0 +1,13 @@
+/*! purgecss start ignore */
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+// this will allow us to apply tailwind classes within custom if we choose
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import 'react-datepicker/dist/react-datepicker.css';
+
+@import './variables';
+
+@import './board';
+/*! purgecss end ignore */

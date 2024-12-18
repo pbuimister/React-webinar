@@ -1,0 +1,243 @@
+.board {
+  @apply grid gap-4;
+  padding-right: 20px;
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(280px, 360px);
+
+  &-column {
+    display: flex;
+    flex-direction: column;
+    height: inherit;
+
+    &-header {
+      @apply p-2 rounded-md text-gray-300 bg-gray-600 text-white leading-6 text-center font-semibold text-base;
+    }
+
+    &-cards {
+      padding-top: 1rem;
+      height: inherit;
+      overflow-y: auto;
+      overflow-x: visible;
+      scrollbar-width: thin;
+      position: relative;
+
+      &.dragged-over {
+        background-color: lightblue;
+      }
+    }
+  }
+
+  .loader {
+    position: absolute;
+    right: 50%;
+    top: 50%;
+    transform: translateX(50%) translateY(-50%);
+  }
+
+  .load-more {
+    height: 60px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      @apply inline-flex justify-center w-full rounded-md px-4 py-2 bg-blue-100 text-sm leading-5 font-semibold text-blue-700 cursor-pointer;
+      margin: 1rem;
+    }
+  }
+
+  &-card {
+    @apply bg-white text-gray-500 rounded shadow text-sm;
+    margin: 0 .5rem 1rem .5rem;
+    padding: .5rem .75rem .5rem .25rem;
+    position: relative;
+
+    &-header {
+      @apply flex justify-between mb-4;
+      align-items: center;
+
+      &:hover, &:focus {
+        .board-card-name {
+          p {
+            display: none;
+          }
+
+          input {
+            display: block;
+          }
+        }
+      }
+    }
+
+    &-name {
+      width: 200px;
+
+      p {
+        @apply font-semibold;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 0 .5rem;
+      }
+
+      input {
+        display: none;
+        @apply font-semibold;
+        width: 100%;
+        border-radius: 3px;
+        padding: 0 .5rem;
+
+        &:focus {
+          display: block;
+          outline: 1px solid $light-blue;
+        }
+
+        &:hover {
+          display: block;
+          outline: 1px solid $light-black;
+        }
+
+        &:hover + p, &:focus + p {
+          display: none;
+        }
+      }
+    }
+
+    &-id {
+      @apply ml-2 text-gray-400 text-xs text-right;
+      white-space: nowrap;
+      flex: 36px;
+    }
+
+    &-date {
+      @apply text-xs flex mb-2;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      span {
+        @apply font-semibold;
+      }
+    }
+
+    &-members {
+      @apply text-xs;
+
+      span {
+        @apply font-semibold;
+      }
+
+      .member {
+        @apply text-center rounded mb-2 p-1;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      .requesters {
+        .member {
+          @apply bg-gray-200;
+        }
+      }
+
+      .assignees {
+        .member {
+          @apply bg-gray-600 text-white;
+        }
+      }
+    }
+
+    &:hover {
+      background-color: #eafafb;
+    }
+
+    &.dragging {
+      opacity: 0.4;
+    }
+
+    .drop-indicator {
+      position: absolute;
+      z-index: 10;
+      background-color: #1D4ED8;
+      pointer-events: none;
+      box-sizing: border-box;
+      height: .125rem;
+      left: .25rem;
+      right: 0;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      &::before {
+        content: '';
+        width: .5rem;
+        height: .5rem;
+        position: absolute;
+        border: .125rem solid #1D4ED8;
+        border-radius: 50%;
+        left: -.475rem;
+      }
+    }
+
+    .edge-top {
+      top: -.5rem;
+      transform: translateY(-50%);
+    }
+
+    .edge-bottom {
+      bottom: -.5rem;
+      transform: translateY(50%);
+    }
+  }
+}
+
+.status-bar {
+  &:before {
+    @apply absolute top-0 left-0 w-full h-1 rounded-tl rounded-tr block;
+  }
+
+  &.success, &.pending, &.error {
+    &:before {
+      content: '';
+      animation: slideIn 0.3s ease-out, slideOut 0.3s ease 2s forwards;
+      @keyframes slideIn {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      @keyframes slideOut {
+        from {
+          width: 100%;
+        }
+        to {
+          width: 0;
+        }
+      }
+    }
+  }
+
+  &.success {
+    &:before {
+      @apply bg-green-300;
+    }
+  }
+
+  &.pending {
+    &:before {
+      @apply bg-blue-300;
+    }
+  }
+
+  &.error {
+    &:before {
+      @apply bg-red-300;
+    }
+  }
+}

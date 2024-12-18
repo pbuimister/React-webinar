@@ -1,0 +1,38 @@
+.wrapper {
+  margin-right: -10px;
+
+  input {
+    outline: none;
+    width: 114px;
+    padding-right: 20px;
+    background-color: transparent;
+  }
+
+  :global(.react-datepicker-popper) {
+    position: fixed !important;
+    z-index: 1000 !important;
+  }
+
+  :global(.react-datepicker__input-container) {
+    input {
+      text-align: right;
+    }
+  }
+
+  :global(.react-datepicker__close-icon) {
+    visibility: hidden;
+    font-weight: bold;
+    right: -4px;
+    top: -1px;
+
+    &:after {
+      @apply bg-blue-500;
+    }
+  }
+
+  &:hover {
+    :global(.react-datepicker__close-icon) {
+      visibility: visible;
+    }
+  }
+}

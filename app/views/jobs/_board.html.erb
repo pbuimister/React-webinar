@@ -1,0 +1,7 @@
+<%= react_component 'KanbanBoardApp', props: {
+      columns: current_account.job_statuses.active.map { |job_status| { id: job_status.id, name: job_status.name } },
+      settings: {
+        date_fields: Job::JOB_DATES - current_account.disabled_default_dates,
+        members_fields: current_account.members_fields
+      }
+} %>

@@ -1,0 +1,32 @@
+extends:
+  airbnb-base
+
+env:
+  browser: true
+
+parser: '@babel/eslint-parser'
+
+globals:
+  $: true
+  Turbolinks: true
+  Rails: true
+
+rules:
+  'max-len': off
+  'no-unused-vars': off
+  'default-case': off
+  'no-underscore-dangle': off
+  'no-alert': off
+  'camelcase': off
+  'class-methods-use-this': off
+  'comma-dangle': ["error", "never"]
+  'react/jsx-filename-extension': [0]
+  'import/extensions': off
+  'import/no-unresolved': off
+  'semi': ["error", "never"]
+  'no-multiple-empty-lines': ["error", { "max": 1 }]
+  'no-param-reassign':
+    - error
+    - props: true
+  'object-curly-newline': [ "error", { multiline: true, consistent: true }]
+  'object-curly-spacing': ["error", "always"]
